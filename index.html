@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+    <div class="fundo">
+        <div class="calculator">
+            <h1>Calculator</h1>
+
+            <p id="result"></p>
+            <table>
+                <tr>
+                    <td><button class="button" onclick="clean()">C</button></td>
+                    <td><button class="button" onclick="back()">←</button></td>
+                    <td><button class="button" onclick="insert('/')">/</button></td>
+                    <td><button class="button" onclick="insert('*')">x</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('7')">7</button></td>
+                    <td><button class="button" onclick="insert('8')">8</button></td>
+                    <td><button class="button" onclick="insert('9')">9</button></td>
+                    <td><button class="button" onclick="insert('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('4')">4</button></td>
+                    <td><button class="button" onclick="insert('5')">5</button></td>
+                    <td><button class="button" onclick="insert('6')">6</button></td>
+                    <td><button class="button" onclick="insert('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" onclick="insert('1')">1</button></td>
+                    <td><button class="button" onclick="insert('2')">2</button></td>
+                    <td><button class="button" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button class="button" style="height: 106px;" onclick="calcular()">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="button" style="width: 106px;" onclick="insert('0')">0</button></td>
+                    <td><button class="button" onclick="insert('.')">.</button></td>
+                </tr>
+            </table>
+        </div>
+        <button class="buttonlegal" onclick="mudarImagem()">Próxima Imagem</button>
+
+    </div>
+    <script>
+        // Defina as URLs das imagens de fundo
+        var imagensDeFundo = [
+            "imagem/FundoWinXP.jpg",
+            "imagem/FundoWin7.jpg",
+            "imagem/FundoWin10.jpg",
+            "imagem/FundoWin11.jpg"
+        ];
+
+        // Verifica se há um índice de imagem atual armazenado no localStorage
+        var indiceImagemAtual = localStorage.getItem("indiceImagemAtual") || 0;
+
+        // Converte o valor armazenado em localStorage para um número inteiro
+        indiceImagemAtual = parseInt(indiceImagemAtual);
+
+        // Atualiza a imagem de fundo inicial
+        mudarImagem();
+
+        function mudarImagem() {
+            // Obtém o elemento body
+            var body = document.body;
+
+            // Altera a imagem de fundo
+            body.style.backgroundImage = "url('" + imagensDeFundo[indiceImagemAtual] + "')";
+
+            // Incrementa o índice da imagem atual
+            indiceImagemAtual++;
+
+            // Volta ao início quando atinge o fim da lista de imagens
+            if (indiceImagemAtual === imagensDeFundo.length) {
+                indiceImagemAtual = 0;
+            }
+
+            // Armazena o novo índice da imagem atual no localStorage
+            localStorage.setItem("indiceImagemAtual", indiceImagemAtual);
+        }
+    </script>
+</body>
+
+
+</html>
